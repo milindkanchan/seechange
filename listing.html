@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+
+
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> 
+
+<html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+  <meta charset="utf-8" />
+  <title>SeaChange</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+  <meta name="MobileOptimized" content="320">
+  <!-- BEGIN GLOBAL MANDATORY STYLES -->        
+  <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+  <!--[if lt IE 9]>
+      <script src="dist/html5shiv.min.js"></script>
+  <![endif]-->
+  <!-- END GLOBAL MANDATORY STYLES -->
+  <!-- BEGIN THEME STYLES --> 
+  
+  <link href="assets/css-new/style-metronic.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css-new/style.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css-new/style-responsive.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css-new/plugins.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css-new/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/> 
+  <link href="assets/css-new/custom.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->   
+    <!--[if lt IE 9]>
+    <script src="/assets/plugins/excanvas.min.js"></script>
+    <script src="/assets/plugins/respond.min.js"></script>  
+    <![endif]-->  
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.js" type="text/javascript" ></script>
+    <!--<script src="assets/js/login.js" type="text/javascript"></script>-->    
+    <!--<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery.blockUI.js" type="text/javascript"></script>  
+    <script src="assets/plugins/jquery.cookie.js" type="text/javascript"></script>
+    <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>-->
+    <!-- END CORE PLUGINS -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed page-full-width">
+  
+  <!-- BEGIN HEADER -->   
+  <div class="header navbar navbar-inverse "><!-- remove class navbar-fixed-top -->
+    
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="header-inner">
+      <!-- BEGIN LOGO -->
+      <div class="navbar-brand">
+        <img src="assets/img/logo-adrenalin.png" alt="logo" class="img-responsive" style="display:inline-block;"/> 
+
+      </div> 
+      <!-- END LOGO -->
+      <!-- BEGIN HORIZONTAL MENU -->
+      <!-- role facet menu -->
+      <div class="hor-menu role">
+        <ul class="nav navbar-nav platform">
+          <li class="active">
+            <a data-toggle="dropdown" data-hover="dropdown" data-close-others="true" href="#">
+              <select id="selectCategoryList">
+                <option value="" disabled selected>Widgets</option>
+              </select>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- end platform facet menu -->
+      <!-- begin platform navigation menu --> 
+      <div class="hor-menu hidden-sm hidden-xs">
+        <ul class="nav navbar-nav">
+        </ul>
+      </div>
+      <!-- BEGIN USER LOGIN DROPDOWN -->
+      <ul class="nav navbar-nav pull-right users ">
+        <li class="hor-menu dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </li>
+      </ul>
+      <!-- END USER LOGIN DROPDOWN -->
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+  </div>
+  <!-- END HEADER -->
+  <div class="clearfix"></div>
+  <!-- BEGIN CONTAINER -->   
+  <div class="page-container" >
+    <div class="page-content"></div>  
+  </div>
+  <!-- END CONTAINER -->
+  <!-- BEGIN CORE PLUGINS -->   
+  <!--[if lt IE 9]>
+  <script src="assets/plugins/excanvas.min.js"></script>
+  <script src="assets/plugins/respond.min.js"></script>  
+  <![endif]-->  
+  <script src="assets/js/common.js" type="text/javascript"></script>
+  <script src="assets/js/widget.js" type="text/javascript"></script>
+  <script>
+    $(document).ready(function(){
+      getWidgetList()    
+    });
+  </script>
+
+  
+  <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
