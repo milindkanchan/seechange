@@ -115,6 +115,8 @@ function setWidgetList(responseData){
 function isOdd(num) { return num % 2;}
 
 function showWidgetDetails(data){  
+  
+  console.log($(".loading").css('display'));
   if (data !== null){
     var user_id = 1
     var child = data;
@@ -168,7 +170,8 @@ function showWidgetDetails(data){
       autoplay: true,
       autoplaySpeed: 20000000,
     });    
-  }  
+  }
+  $(".loading").hide();  
 }
 
 function getOmDataPoints(key, categoryData, setting){  
