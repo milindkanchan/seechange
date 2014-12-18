@@ -132,6 +132,7 @@ function showWidgetDetails(data){
         omData = getOmDataPoints(index, category.data, category.setting)
 
         if(tmp_cnt === 1){
+          pdf_listing +=  "<div>";
           pdf_listing +=  "<div class='row'>";
         }
         pdf_listing += "<div class='col-md-4'>";
@@ -151,13 +152,22 @@ function showWidgetDetails(data){
 
         if(tmp_cnt === 3){
           pdf_listing +=  "</div>";
+          pdf_listing +=  "</div>";
           tmp_cnt = 1;
         }else{
           tmp_cnt += 1;
         }        
       })
     }
-    $(".page-content").html(pdf_listing);
+    $(".image_slider").html(pdf_listing);
+    $('.image_slider').slick({
+      dots: true,
+      arrows: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 20000000,
+    });    
   }  
 }
 
@@ -193,24 +203,6 @@ function getOmDataPoints(key, categoryData, setting){
       data_list = widgetSystems(category, setting, 1);
       return;
     }
-    //sublist = '';
-    /*$.each(category, function(idx, cat){
-      if(idx === 'lastModified'){
-        modDate = cat;
-      }else if(idx === "error"){
-        widError = cat;
-      }else{        
-        data_list += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-        data_list +=  "<div style='width:75%;float:left;'><h6>" + idx + "</h6></div>";
-        //data_list +=   "<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + getOmDataSubPoints(cat, sublist) + "</a></div>";
-        data_list +=   "<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + cat + "</a></div>";
-        data_list += "</div>";
-        itmcnt += 1;
-      }
-      if(itmcnt >= 3){
-        return false;
-      }
-    });*/
   });  
   return [data_list[0], data_list[1]];
 }
