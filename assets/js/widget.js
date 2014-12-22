@@ -1,8 +1,17 @@
+function formatUpdatedDate(upDate){
+  var strDate = '';
+  var strTime = '';
+  var splitDate = upDate.split("T");
+  strDate = splitDate[0];
+  strTime = splitDate[1].split(".")[0];
+  return [strDate, strTime];
+}
+
 function widgetAlert(data, setting, more){
 
 	var data_listing = '';  
 	var widgetStatus = true;
-	console.log(data)
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== null){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>High severity</h6></div>";
@@ -26,17 +35,17 @@ function widgetAlert(data, setting, more){
 			data_listing +=			"<li><a href='#'>" + alert.alertName + ". (" + alert.count + ") </a></li>";
 		});	
 		data_listing += 	"</ul>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:1.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, '']
 
 }
 
@@ -44,8 +53,10 @@ function widgetAssets(data, setting, more){
 	
 	var data_listing = '';
 	var val_listing = '';
+	var more_listing = '';
 	var title = '';
 	var widgetStatus = true;
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== ''){
 		var thresh = setting.productization_latency;
 		var title = data.currentNoOfTitles;
@@ -110,27 +121,43 @@ function widgetAssets(data, setting, more){
 		}	
 		data_listing += 	"<div style='width:75%;float:left;'><h6>Current number of pending productization items</h6></div>";
 		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.pendingProductizationItemCount + "</div>";
-		data_listing += "</div>";	
+		data_listing += "</div>";
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Pending productization items greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + thresh + "</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";
+			
+		}
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
 
 function widgetBGW(data, setting, more){
 
 	var data_listing = '';
 	var res_icoms = '';
+	var more_listing = '';
 	var widgetStatus = true;
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== ''){
 		var rep_icoms = (data.reportedBillingIcomsRecords < 0) ? null : data.reportedBillingIcomsRecords;
 	    var unrep_icoms = (data.unreportedBillingIcomsRecords < 0) ? null : data.unreportedBillingIcomsRecords;
@@ -174,17 +201,41 @@ function widgetBGW(data, setting, more){
 		data_listing += "</div>";
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Unreported TVOD record count is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.tvod_record_count_threshold + " records</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Posting success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.posting_success_rate_threshold + " %</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Duration from last VOD usage Ingest is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.vod_usage_ingest_threshold + " %</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";			
+		}
+
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";		
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
 
 function widgetCD(data, setting, more){
@@ -192,6 +243,7 @@ function widgetCD(data, setting, more){
 	var data_listing = '';
 	var val_listing = '';
 	var widgetStatus = true;
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	val_listing = '';
 	if(data.error !== ""){
 		title = data.currentNoOfDeliverables;
@@ -234,24 +286,26 @@ function widgetCD(data, setting, more){
 		data_listing += "</div>";
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, '']
 }
 
 function widgetPGW(data, setting, more){
 
 	var transaction_success_rate = '';
 	var data_listing = '';
+	var more_listing = ''
 	var widgetStatus = true;
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== ""){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>Transaction Count</h6></div>";
@@ -292,23 +346,45 @@ function widgetPGW(data, setting, more){
 		data_listing += "</div>";		
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Transaction success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.transaction_success_rate_threshold + " %</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Duration from last transaction is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.last_transaction_threshold + " hours</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";
+
+		}
+
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
 
 function widgetPublisher(data, setting, more){
 
 	var data_listing = '';
 	var widgetStatus = true;
+	var more_listing = '';
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== ""){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:55%;float:left;'><h6>Average rate of client requests (5F) </h6></div>";
@@ -327,24 +403,40 @@ function widgetPublisher(data, setting, more){
 		data_listing += "</div>";	
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Average request duration is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.publisher_latency + " msec</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";			
+		}
+
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
 
 function widgetStreams(data, setting, more){
 
 	var data_listing = '';
 	var widgetStatus = true;
-	if(data.error !== ""){
+	var more_listing = '';
+	var updatedDate = formatUpdatedDate(data.lastModified)
+	if(data.error !== ""){		
 		var activeSess = ((data.totalStreams < 0 ) ? 0 : data.totalStreams) + " active session"
 		if(data.totalStreams <= 0){
 		widgetStatus = false;
@@ -403,27 +495,54 @@ function widgetStreams(data, setting, more){
 		data_listing += "</div>";				
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
+
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Setup latency is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.avg_latency_threshold + " msec</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Short term success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.short_term_success_rate_threshold + " %</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Medium term success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.medium_term_success_rate_threshold + " %</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";
+
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";			
+		}
+
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
 
 function widgetSystems(data, setting, more){
 
 	var data_listing = '';
-	var val_listing = ''
+	var val_listing = '';
+	var more_listing = '';
 	var Vdown = 0;
 	var Sdown = 0;
 	var widgetStatus = true;
-	console.log(data)
+	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error !== null){
 		var vms = data.vmnodes;
 		$.each(vms, function(idx, cat){
@@ -461,15 +580,36 @@ function widgetSystems(data, setting, more){
 		data_listing +=      "</div>";	
 
 		data_listing += "<div>";
-		data_listing += 	"<small> Last updated" + data.lastModified + "</small>";	
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
+
+		if (more == 1){
+		  	more_listing +=	"<div>";
+			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Number of VMs down is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.server_threshold_down + "</div>";
+			more_listing +=      "</div>";
+
+			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
+			more_listing +=        "<div style='width:75%;float:left;'><h6>Number of services down is greater than</h6></div>";
+			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.service_threshold_down + "</div>";
+			more_listing +=      "</div>";
+			more_listing += "</div>";			
+
+	  		more_listing +=	"<div>";
+			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
+			more_listing += "</div>";
+		}
+
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
-		data_listing += 	"<small> Last updated : " + data.lastModified + "</small>";
+		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";		
 	}	
-	return [data_listing, widgetStatus]
+	return [data_listing, widgetStatus, more_listing]
 }
