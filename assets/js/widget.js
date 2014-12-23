@@ -28,13 +28,20 @@ function widgetAlert(data, setting, more){
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.lowSeverity + "</a></div>";
 		data_listing += "</div>";
 
+
 	  	data_listing +=	"<div>";
 		data_listing +=		"<h6>Recent alerts</h6>";
+		if(data.recentAlerts.length > 0){
 		data_listing += 	"<ul>";
 		$.each(data.recentAlerts, function(index, alert){
 			data_listing +=			"<li><a href='#'>" + alert.alertName + ". (" + alert.count + ") </a></li>";
 		});	
 		data_listing += 	"</ul>";
+		}else{
+		data_listing += 	"<ul>";
+		data_listing +=			"<li>No data available</li>";		
+		data_listing += 	"</ul>";			
+		}
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
