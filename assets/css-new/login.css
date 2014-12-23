@@ -4,7 +4,7 @@ Login page
 
 /* logo page */
 .login {
-  background:#52659f url(assets/img/login-background.jpg) no-repeat scroll 0 0;
+  background:#52659f url(../img/login-background.jpg) no-repeat scroll 0 0;
 }
 
 .login .logo {

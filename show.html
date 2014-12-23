@@ -127,9 +127,11 @@
     $(document).ready(function(){
       var widgetId = getUrlParams();
       showWidgetSetting(widgetId);
+      $("#selectCategoryList").change(function(){
+        window.location.href = this.value;
+      });            
     });
     function backButton(){
-      alert("123");
       window.location.href = "listing.html";
     }    
   </script>

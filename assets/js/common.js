@@ -193,14 +193,18 @@ function showWidgetSetting(widgetId){
     var child = data;
     var pdf_listing = "";
     var div_listing = "";
-    var tmp_cnt = 1;
+    var tmp_cnt = 0;
     var omData = '';
+    var cnt = 0;
     if (child == null){
       pdf_listing = "";
     }else{
       var clength = child.length;
       $.each(child, function(index, category){
-        //if (category.id == widgetId){
+          if (category.id == widgetId){
+            cnt = tmp_cnt;
+            console.log(cnt);
+          }  
           omData = getOmDataPoints(index, category.data, category.setting, 1)
 
           pdf_listing +=  "<div>";
@@ -214,6 +218,7 @@ function showWidgetSetting(widgetId){
           }
 
           pdf_listing +=  "</div>";
+          tmp_cnt += 1
 
       })
     }
@@ -225,7 +230,9 @@ function showWidgetSetting(widgetId){
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 20000000,
-    });    
+      swipe: true
+    });
+    $('.image_slider').slickGoTo(cnt);
   }
   $(".loading").hide();  
 }
