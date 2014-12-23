@@ -1,9 +1,3 @@
-var baseUrl = '';
-$(document).ready(function (){  
-  baseUrl = $.parseJSON(localStorage.getItem("baseUrl"));
-  //alert(baseUrl);
-});
-
 function getUrlParams(){
     var results = new RegExp('[\?]id=([^&#]*)').exec(window.location.href);
     if (results==null){

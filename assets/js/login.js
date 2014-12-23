@@ -1,6 +1,6 @@
 $("#btnLogin").click(function () {
   //var uname =  $("#SC_username");
-  //var pass =  $("#SC_password");
+  //var pass =  $("#SC_password"); 
   var ip = $("#SC_ip").val();
   var port = $("#SC_port").val();
   var proto = "http://"
@@ -9,7 +9,9 @@ $("#btnLogin").click(function () {
     proto = "https://"
   }
   var uri =  proto + ip + ":" + port  + "/mmc";
-  //console.log(uri);
+  if ($.parseJSON(localStorage.baseUrl) !== uri){
+    localStorage.clear();
+  }
   localStorage.setItem("baseUrl", JSON.stringify(uri));
   jQuery.support.cors = true;
   console.log("Request for login to MMC.....");

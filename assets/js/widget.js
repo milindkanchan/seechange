@@ -15,17 +15,17 @@ function widgetAlert(data, setting, more){
 	if(data.error === ""){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>High severity</h6></div>";
-		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.highSeverity + "</a></div>";
+		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.highSeverity + "</div>";
 		data_listing += "</div>";
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>Medium severity</h6></div>";
-		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.mediumSeverity + "</a></div>";
+		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.mediumSeverity + "</div>";
 		data_listing += "</div>";
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>Low severity</h6></div>";
-		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.lowSeverity + "</a></div>";
+		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.lowSeverity + "</div>";
 		data_listing += "</div>";
 
 
@@ -34,7 +34,7 @@ function widgetAlert(data, setting, more){
 		if(data.recentAlerts.length > 0){
 		data_listing += 	"<ul>";
 		$.each(data.recentAlerts, function(index, alert){
-			data_listing +=			"<li><a href='#'>" + alert.alertName + ". (" + alert.count + ") </a></li>";
+			data_listing +=			"<li>" + alert.alertName + ". (" + alert.count + ") </li>";
 		});	
 		data_listing += 	"</ul>";
 		}else{
