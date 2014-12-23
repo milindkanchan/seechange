@@ -12,7 +12,7 @@ function widgetAlert(data, setting, more){
 	var data_listing = '';  
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== null){
+	if(data.error === ""){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>High severity</h6></div>";
 		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.highSeverity + "</a></div>";
@@ -39,7 +39,7 @@ function widgetAlert(data, setting, more){
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:1.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -57,7 +57,7 @@ function widgetAssets(data, setting, more){
 	var title = '';
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== ''){
+	if(data.error === null){
 		var thresh = setting.productization_latency;
 		var title = data.currentNoOfTitles;
 		$.each(title, function(idx, cat){
@@ -142,7 +142,7 @@ function widgetAssets(data, setting, more){
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -158,9 +158,9 @@ function widgetBGW(data, setting, more){
 	var more_listing = '';
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== ''){
-		var rep_icoms = (data.reportedBillingIcomsRecords < 0) ? null : data.reportedBillingIcomsRecords;
-	    var unrep_icoms = (data.unreportedBillingIcomsRecords < 0) ? null : data.unreportedBillingIcomsRecords;
+	if(data.error === null){
+		var rep_icoms = (data.reportedBillingIcomsRecords < 0) ? 0 : data.reportedBillingIcomsRecords;
+	    var unrep_icoms = (data.unreportedBillingIcomsRecords < 0) ? 0 : data.unreportedBillingIcomsRecords;
 	    if (rep_icoms == null && unrep_icoms == null){
 	    	res_icoms = 0
 	    }else {
@@ -229,7 +229,7 @@ function widgetBGW(data, setting, more){
 
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -245,7 +245,7 @@ function widgetCD(data, setting, more){
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
 	val_listing = '';
-	if(data.error !== ""){
+	if(data.error === null){
 		title = data.currentNoOfDeliverables;
 		$.each(title, function(idx, cat){
 			if(idx !== "error"){			
@@ -290,7 +290,7 @@ function widgetCD(data, setting, more){
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -306,7 +306,7 @@ function widgetPGW(data, setting, more){
 	var more_listing = ''
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== ""){
+	if(data.error === null){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:75%;float:left;'><h6>Transaction Count</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.transactionSuccessCount + "</div>";
@@ -331,7 +331,7 @@ function widgetPGW(data, setting, more){
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + transaction_success_rate + "</div>";
 		data_listing += "</div>";
 
-		var elap_time = (data.elapsedTimeFromLastTransaction == "-1") ? nil : data.elapsedTimeFromLastTransaction
+		var elap_time = (data.elapsedTimeFromLastTransaction == "-1") ? 0 : data.elapsedTimeFromLastTransaction
 		var cal_elap = data.elapsedTimeFromLastTransaction.split(":");
 		var cTime = (cal_elap[0] + cal_elap[1])/60;
 
@@ -370,7 +370,7 @@ function widgetPGW(data, setting, more){
 
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -385,7 +385,7 @@ function widgetPublisher(data, setting, more){
 	var widgetStatus = true;
 	var more_listing = '';
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== ""){
+	if(data.error === null){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing += 	"<div style='width:55%;float:left;'><h6>Average rate of client requests (5F) </h6></div>";
 		data_listing +=     "<div style='width:45%;float:right;padding:2.5%;text-align:right;'>" + data.totalRequestRate + " request/sec </div>";
@@ -421,7 +421,7 @@ function widgetPublisher(data, setting, more){
 
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -436,7 +436,7 @@ function widgetStreams(data, setting, more){
 	var widgetStatus = true;
 	var more_listing = '';
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== ""){		
+	if(data.error === null){		
 		var activeSess = ((data.totalStreams < 0 ) ? 0 : data.totalStreams) + " active session"
 		if(data.totalStreams <= 0){
 		widgetStatus = false;
@@ -525,7 +525,7 @@ function widgetStreams(data, setting, more){
 
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
@@ -543,7 +543,7 @@ function widgetSystems(data, setting, more){
 	var Sdown = 0;
 	var widgetStatus = true;
 	var updatedDate = formatUpdatedDate(data.lastModified)
-	if(data.error !== null){
+	if(data.error == ""){
 		var vms = data.vmnodes;
 		$.each(vms, function(idx, cat){
 			if(idx === 'down'){
@@ -605,11 +605,11 @@ function widgetSystems(data, setting, more){
 
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:right;'><a href='#'>" + data.error + "</a></div>";
+		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
 	  	data_listing +=	"<div>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
-		data_listing += "</div>";		
+		data_listing += "</div>";
 	}	
 	return [data_listing, widgetStatus, more_listing]
 }
