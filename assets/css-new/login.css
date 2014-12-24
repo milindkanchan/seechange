@@ -44,7 +44,7 @@ Login page
 
 .login .input-icon input{
     height: 30px;
-    width: 320px;
+    width: 100%;
 }
 
 .login .content .input-icon {
@@ -101,6 +101,7 @@ Login page
 
 .login .content .form-actions .btn {
   margin-top: 1px;
+  width: 100%;
 }
 
 .login .content .forget-password {
