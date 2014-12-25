@@ -31,9 +31,11 @@ $("#btnLogin").click(function () {
         window.location.href = "listing.html";
       },
       error: function (responseData, textStatus, errorThrown) {
-        if(errorThrown.indexOf("Service Unavailable") >= 0){
-          displayError("Unable to fetch data, as requested server/service is unavailable.", 'Error');
-        }
+        //if(errorThrown.indexOf("Service Unavailable") >= 0){
+          displayError("Unable to login/fetch data, as requested server/service is unavailable.", 'Error');
+        //}else{
+          //displayError("Unable to login data, as requested server/service is unavailable.", 'Error');
+        //}
         console.log('Ajax Request failed. ' + errorThrown);
         $(".loading").hide();
       }

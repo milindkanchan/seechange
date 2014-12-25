@@ -30,6 +30,8 @@ Buttons & Dropdown Buttons
 	padding: 7px 14px; 	
   font-size: 14px;  
 	outline: none !important;
+  background-color: #3B60AF;
+  color: white;  
   -webkit-box-shadow: none !important;
      -moz-box-shadow: none !important;
           box-shadow: none !important;
