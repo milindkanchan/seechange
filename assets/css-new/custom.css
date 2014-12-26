@@ -77,7 +77,7 @@
 
 
 .header .hor-menu ul.nav li a {
-	padding: 11px 9px 11px 15px;
+	padding: 11px 9px 11px 9px;
 }
 
 .header .hor-menu .dropdown-menu li > a {
@@ -86,7 +86,7 @@
 	
 .header .hor-menu ul.nav:first-child {
 	margin-left:0px;
-	padding-left:10px;
+	padding-left:7px;
 }
 
 .header .hor-menu.role {
@@ -122,8 +122,8 @@
 		background:#fff !important;
 		margin-top:0px;
 		padding:0;
-	height:44px;
-	width:120px;
+		height:44px;
+		width:80px;
 	}
 
 		
