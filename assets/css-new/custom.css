@@ -14,7 +14,7 @@
 }
 
 .header .hor-menu ul.nav li a {
-  font-size:12px;
+  font-size:11px;
   padding: 11px 7px;
 
 }
@@ -90,7 +90,7 @@
 }
 
 .header .hor-menu.role {
-	margin-left:-10px;
+	margin-left:-7px;
 }
 
 .header .hor-menu ul.platform li.active > a:hover {
@@ -120,7 +120,7 @@
 	.header .navbar-brand,
 	.header .navbar-brand:active	{
 		background:#fff !important;
-		margin-top:0px;
+		margin-top:-2px;
 		padding:0;
 		height:44px;
 		width:80px;
