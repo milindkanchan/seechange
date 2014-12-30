@@ -87,17 +87,13 @@
       <div class="page-content">
 	      <div class="row">
 	      	<div class="col-md-12">
-	      		<div class='portlet box blue'>
-	      			<div class="portlet-title">
-	      				<div class="caption" >Widgets</div>
+	      		<div class='portlet box blue portlet_radius'>
+	      			<div class="portlet-title portlet_radius">
+	      				<div class="caption" >Dashboard</div>
 	      				 <i onclick="toggleWidgets();" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
-	      		<div id="divWidgets" style="display:none;">
-	      			<p>Widget 1 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>
-	      			<p>Widget 2 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>
-	      			<p>Widget 3 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>
-	      		</div>	
+	      		<div id="divWidgets" style="display:none;"></div>	
 	      	</div>
 	      	<!--
 	      	<div class="col-md-12">
@@ -129,16 +125,18 @@
   <script src="assets/js/login.js" type="text/javascript"></script>
   <script>
     $(document).ready(function(){
+      $('body').css('display', 'none');
+      $('body').fadeIn(1000);      
       getWidgetList();      
       $("#selectCategoryList").change(function(){
         window.location.href = this.value;
       });      
     });
     function toggleConfiguration(){
-      	$("#divConf").toggle('slow');
+      	$("#divConf").slideToggle('slow');
     }
     function toggleWidgets(){
-    	$("#divWidgets").toggle('slow');
+    	$("#divWidgets").slideToggle('slow');
     }
   </script>
   <!-- END JAVASCRIPTS -->

@@ -1247,6 +1247,11 @@ Portlets
   padding: 0px;
 }
 
+.portlet_radius  {
+  border-radius: 10px !important;
+  margin-bottom: 15px;
+}
+
 .portlet > .portlet-title {  
   margin-bottom: 15px;
   border-bottom: 1px solid #eee;
