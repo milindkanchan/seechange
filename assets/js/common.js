@@ -101,16 +101,24 @@ function setWidgetList(responseData){
   if (responseData !== null){
     var child = responseData;
     var listItems = "";
+    var homeList = "";
     if (child !== null){ 
       $.each(child, function(index, category){
         listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
+        homeList += "<p onclick=redirectToShow('"+category.id + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
       })
       localStorage.setItem("cacheSelectWidget", listItems);
-      $("#selectCategoryList").append(listItems);    
+      if (window.location.href.indexOf("home.html") > 0){
+       $("#divWidgets").html(homeList); 
+      }  
+      //$("#selectCategoryList").append(listItems);    
     }else{
       displayError("Unable to fetch data,  please try logging out and logging back in.", 'Error');
     }
   }
+}
+function redirectToShow(cat_id){
+  window.location.href = "show.html?id=" + cat_id;
 }
 
 function isOdd(num) { return num % 2;}

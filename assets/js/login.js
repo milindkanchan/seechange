@@ -8,7 +8,8 @@ $("#btnLogin").click(function () {
   if(port === '8443'){
     proto = "https://"
   }
-  var uri =  proto + ip + ":" + port  + "/mmc";
+  //var uri =  proto + ip + ":" + port  + "/mmc";
+  var uri =  proto + ip + ":" + port;
   if ($.parseJSON(localStorage.baseUrl) !== uri){
     localStorage.clear();
   }
@@ -28,7 +29,7 @@ $("#btnLogin").click(function () {
       success: function(data, textStatus) {
         console.log("Got reponse from server for widget list....");
         localStorage.setItem("cachedWidgetList", JSON.stringify(data));
-        window.location.href = "listing.html";
+        window.location.href = "home.html";
       },
       error: function (responseData, textStatus, errorThrown) {
         //if(errorThrown.indexOf("Service Unavailable") >= 0){
