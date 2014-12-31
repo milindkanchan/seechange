@@ -65,10 +65,45 @@ function callWidgetList(status){
             if (status === true){
               if (window.location.href.indexOf("show.html") > 0){
                 showWidgetDetailsFlip(data);
+              }//else{
+              //  showWidgetDetails(data);
+              //}
+            }
+          },
+          error: function (responseData, textStatus, errorThrown) {
+            console.log('Ajax Request failed. ' + errorThrown);            
+          }
+        });
+
+      })
+  //}    
+}
+
+function callConfigurationList(status){
+  //if (networkStatus() === 1){
+    var baseUrl = $.parseJSON(localStorage.getItem("baseUrl"));
+    console.log("Server call to get configuration list....");
+    jQuery.support.cors = true;
+      $(function (){
+        $.ajax({
+          url: baseUrl + "/healthcheck/get_configurations",
+          dataType: "json",
+          xhrFields: {
+            'withCredentials': true
+          },
+          crossDomain: true,
+          cache: true,
+          success: function(data, textStatus) {
+            console.log("Got reponse from server for configuration list....");
+            localStorage.setItem("cachedConfigurationList", JSON.stringify(data));
+            setConfigurationList(data);
+            /*if (status === true){
+              if (window.location.href.indexOf("show.html") > 0){
+                showWidgetDetailsFlip(data);
               }else{
                 showWidgetDetails(data);
               }
-            }
+            }*/
           },
           error: function (responseData, textStatus, errorThrown) {
             console.log('Ajax Request failed. ' + errorThrown);            
@@ -81,19 +116,28 @@ function callWidgetList(status){
 
 function getWidgetList(){
   var cachedWgtList = localStorage.getItem("cachedWidgetList");
-  if (cachedWgtList !== null){
+  var cachedConfList = localStorage.getItem("cachedConfigurationList");
+
+  if (cachedWgtList !== null && cachedConfList !== null){
     console.log("Fetching widget select/details list from cache...");
     cdWgtList = $.parseJSON(cachedWgtList);
+    cdConfList = $.parseJSON(cachedConfList);
     //setWidgetList(cachedWgtList)    
     if (window.location.href.indexOf("show.html") > 0){
-      showWidgetDetailsFlip(cdWgtList)      
+      showWidgetDetailsFlip(cdWgtList)
+    }else if (window.location.href.indexOf("home.html") > 0){
+      setWidgetList(cdWgtList)
+      setConfigurationList(cdConfList)
     }else{
       showWidgetDetails(cdWgtList);  
+      callConfigurationList(cdConfList);
     }
     callWidgetList(false);
+    callConfigurationList(true);
   }else{
-    console.log("Fetching widget select/details list from server...");
+    console.log("Fetching widget/configuration details list from server...");
     callWidgetList(true);
+    callConfigurationList(true);
   }
 }
 
@@ -104,10 +148,10 @@ function setWidgetList(responseData){
     var homeList = "";
     if (child !== null){ 
       $.each(child, function(index, category){
-        listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
+        //listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
         homeList += "<p onclick=redirectToShow('"+category.id + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
       })
-      localStorage.setItem("cacheSelectWidget", listItems);
+      //localStorage.setItem("cacheSelectWidget", listItems);
       if (window.location.href.indexOf("home.html") > 0){
        $("#divWidgets").html(homeList); 
       }  
@@ -117,6 +161,24 @@ function setWidgetList(responseData){
     }
   }
 }
+
+function setConfigurationList(responseData){
+  if (responseData !== null){
+    var child = responseData;
+    var homeList = "";
+    if (child !== null){ 
+      $.each(child, function(index, category){
+        homeList += "<p onclick=#>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+      })
+      if (window.location.href.indexOf("home.html") > 0){
+       $("#divConf").html(homeList); 
+      }
+    }else{
+      displayError("Unable to fetch data,  please try logging out and logging back in.", 'Error');
+    }
+  }
+}
+
 function redirectToShow(cat_id){
   window.location.href = "show.html?id=" + cat_id;
 }

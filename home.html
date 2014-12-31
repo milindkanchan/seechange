@@ -95,20 +95,15 @@
 	      		</div>
 	      		<div id="divWidgets" style="display:none;"></div>	
 	      	</div>
-	      	<!--
 	      	<div class="col-md-12">
-	      		<div class='portlet box blue'>
-	      			<div class="portlet-title">
+	      		<div class='portlet box blue portlet_radius'>
+	      			<div class="portlet-title portlet_radius">
 	      				<div class="caption">Configurations</div>
 	      				<i onclick="toggleConfiguration();" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
-	      		<div id="divConf" style="display:none;">
-	      			<p>Configuration 1 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>
-	      			<p>Configuration 2 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>
-	      			<p>Configuration 3 <i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>	
-	      		</div>	      		
-	      	</div>  -->    	
+	      		<div id="divConf" style="display:none;"></div>	      		
+	      	</div>
 	      </div>
       </div>  
   </div>
@@ -133,10 +128,16 @@
       });      
     });
     function toggleConfiguration(){
-      	$("#divConf").slideToggle('slow');
+      if($("#divWidgets").css("display") === "block"){
+        $("#divWidgets").slideToggle('slow');
+      }
+      $("#divConf").slideToggle('slow');      
     }
-    function toggleWidgets(){
-    	$("#divWidgets").slideToggle('slow');
+    function toggleWidgets(){    	
+      if($("#divConf").css("display") === "block"){
+        $("#divConf").slideToggle('slow');
+      }
+      $("#divWidgets").slideToggle('slow');
     }
   </script>
   <!-- END JAVASCRIPTS -->

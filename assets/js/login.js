@@ -8,8 +8,8 @@ $("#btnLogin").click(function () {
   if(port === '8443'){
     proto = "https://"
   }
-  //var uri =  proto + ip + ":" + port  + "/mmc";
-  var uri =  proto + ip + ":" + port;
+  var uri =  proto + ip + ":" + port  + "/mmc";
+  //var uri =  proto + ip + ":" + port;
   if ($.parseJSON(localStorage.baseUrl) !== uri){
     localStorage.clear();
   }
