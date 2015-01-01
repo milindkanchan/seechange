@@ -9,7 +9,7 @@ function getUrlParams(){
 }
 
 function getExtraUrlParams(){
-    var results = new RegExp('[\&]sid=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\&]type=([^&#]*)').exec(window.location.href);
     if (results==null){
        return null;
     }
@@ -125,6 +125,7 @@ function getWidgetList(){
     //setWidgetList(cachedWgtList)    
     if (window.location.href.indexOf("show.html") > 0){
       showWidgetDetailsFlip(cdWgtList)
+      //showConfigurationDetails(cdConfList)
     }else if (window.location.href.indexOf("home.html") > 0){
       setWidgetList(cdWgtList)
       setConfigurationList(cdConfList)
@@ -149,7 +150,7 @@ function setWidgetList(responseData){
     if (child !== null){ 
       $.each(child, function(index, category){
         //listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
-        homeList += "<p onclick=redirectToShow('"+category.id + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        homeList += "<p onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
       })
       //localStorage.setItem("cacheSelectWidget", listItems);
       if (window.location.href.indexOf("home.html") > 0){
@@ -168,7 +169,7 @@ function setConfigurationList(responseData){
     var homeList = "";
     if (child !== null){ 
       $.each(child, function(index, category){
-        homeList += "<p onclick=#>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        homeList += "<p onclick=redirectToShow('" + category.id + "','conf');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
       })
       if (window.location.href.indexOf("home.html") > 0){
        $("#divConf").html(homeList); 
@@ -179,8 +180,8 @@ function setConfigurationList(responseData){
   }
 }
 
-function redirectToShow(cat_id){
-  window.location.href = "show.html?id=" + cat_id;
+function redirectToShow(cat_id, cat_type){
+  window.location.href = "show.html?id=" + cat_id + "&type=" + cat_type;
 }
 
 function isOdd(num) { return num % 2;}
@@ -250,8 +251,14 @@ function showWidget(widgetId){
   window.location.href = "show.html?id=" + widgetId;
 }
 
-function showWidgetSetting(widgetId){
-  var data =  $.parseJSON(localStorage.getItem("cachedWidgetList"));
+function showWidgetSetting(widgetId, widgetType){
+  var data = '';
+  if(widgetType === "widget"){
+    data =  $.parseJSON(localStorage.getItem("cachedWidgetList"));
+  }else{
+    data =  $.parseJSON(localStorage.getItem("cachedConfigurationList"));
+  }
+
   if (data !== null){
     setWidgetList(data);
     var child = data;
@@ -267,9 +274,13 @@ function showWidgetSetting(widgetId){
       $.each(child, function(index, category){
           if (category.id == widgetId){
             cnt = tmp_cnt;
-            console.log(cnt);
+          }
+          if(widgetType === "widget"){
+            omData = getOmDataPoints(index, category.data, category.setting, 1)
+          }else{
+            omData = getConfigurationData(category, category.setting, 0)
           }  
-          omData = getOmDataPoints(index, category.data, category.setting, 1)
+
 
           pdf_listing +=  "<div>";
 
@@ -282,8 +293,7 @@ function showWidgetSetting(widgetId){
           }
 
           pdf_listing +=  "</div>";
-          tmp_cnt += 1
-
+          tmp_cnt += 1;
       })
     }
     $(".image_slider").html(pdf_listing);
@@ -399,5 +409,8 @@ function getOmDataPoints(key, categoryData, setting, more){
   return [data_list[0], data_list[1], data_list[2]];
 }
 
-
-
+function getConfigurationData(categoryData, setting, more){  
+  var data_list;
+  data_list = getConfigurationDetails(categoryData, setting, more);  
+  return [data_list[0], data_list[1], data_list[2]];
+}
