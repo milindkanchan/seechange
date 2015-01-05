@@ -114,31 +114,71 @@ function callConfigurationList(status){
   //}    
 }
 
+function callComponentList(status){
+  //if (networkStatus() === 1){
+    var baseUrl = $.parseJSON(localStorage.getItem("baseUrl"));
+    console.log("Server call to get component list....");
+    jQuery.support.cors = true;
+      $(function (){
+        $.ajax({
+          url: baseUrl + "/healthcheck/get_component",
+          dataType: "json",
+          xhrFields: {
+            'withCredentials': true
+          },
+          crossDomain: true,
+          cache: true,
+          success: function(data, textStatus) {
+            console.log("Got reponse from server for component list....");
+            localStorage.setItem("cachedComponentList", JSON.stringify(data));
+            setComponentList(data);
+            /*if (status === true){
+              if (window.location.href.indexOf("show.html") > 0){
+                showWidgetDetailsFlip(data);
+              }else{
+                showWidgetDetails(data);
+              }
+            }*/
+          },
+          error: function (responseData, textStatus, errorThrown) {
+            console.log('Ajax Request failed. ' + errorThrown);            
+          }
+        });
+
+      })
+  //}    
+}
+
 function getWidgetList(){
   var cachedWgtList = localStorage.getItem("cachedWidgetList");
   var cachedConfList = localStorage.getItem("cachedConfigurationList");
+  var cachedCompList = localStorage.getItem("cachedComponentList");
 
   if (cachedWgtList !== null && cachedConfList !== null){
-    console.log("Fetching widget select/details list from cache...");
+    
+    console.log("Fetch from cache...");
     cdWgtList = $.parseJSON(cachedWgtList);
     cdConfList = $.parseJSON(cachedConfList);
-    //setWidgetList(cachedWgtList)    
+    cdCompList= $.parseJSON(cachedCompList);
+
     if (window.location.href.indexOf("show.html") > 0){
       showWidgetDetailsFlip(cdWgtList)
-      //showConfigurationDetails(cdConfList)
     }else if (window.location.href.indexOf("home.html") > 0){
-      setWidgetList(cdWgtList)
-      setConfigurationList(cdConfList)
+      setWidgetList(cdWgtList);
+      setConfigurationList(cdConfList);
+      setComponentList(cdCompList);
     }else{
       showWidgetDetails(cdWgtList);  
       callConfigurationList(cdConfList);
     }
     callWidgetList(false);
     callConfigurationList(true);
+    callComponentList(true);
   }else{
-    console.log("Fetching widget/configuration details list from server...");
+    console.log("Fetch details from server...");
     callWidgetList(true);
     callConfigurationList(true);
+    callComponentList(true);
   }
 }
 
@@ -173,6 +213,23 @@ function setConfigurationList(responseData){
       })
       if (window.location.href.indexOf("home.html") > 0){
        $("#divConf").html(homeList); 
+      }
+    }else{
+      displayError("Unable to fetch data,  please try logging out and logging back in.", 'Error');
+    }
+  }
+}
+
+function setComponentList(responseData){
+  if (responseData !== null){
+    var child = responseData;
+    var homeList = "";
+    if (child !== null){ 
+      $.each(child, function(index, category){
+        homeList += "<p onclick=redirectToShow('" + category.id + "','comp');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+      })
+      if (window.location.href.indexOf("home.html") > 0){
+       $("#divAlerts").html(homeList); 
       }
     }else{
       displayError("Unable to fetch data,  please try logging out and logging back in.", 'Error');
@@ -255,12 +312,14 @@ function showWidgetSetting(widgetId, widgetType){
   var data = '';
   if(widgetType === "widget"){
     data =  $.parseJSON(localStorage.getItem("cachedWidgetList"));
-  }else{
+  }else if(widgetType === "conf"){
     data =  $.parseJSON(localStorage.getItem("cachedConfigurationList"));
+  }else if(widgetType === "comp"){
+    data =  $.parseJSON(localStorage.getItem("cachedComponentList"));
   }
 
   if (data !== null){
-    setWidgetList(data);
+    //setWidgetList(data);
     var child = data;
     var pdf_listing = "";
     var div_listing = "";
@@ -277,8 +336,10 @@ function showWidgetSetting(widgetId, widgetType){
           }
           if(widgetType === "widget"){
             omData = getOmDataPoints(index, category.data, category.setting, 1)
-          }else{
+          }else if(widgetType === "conf"){
             omData = getConfigurationData(category, category.setting, 0)
+          }else if(widgetType === "comp"){
+            omData = getComponentData(category, category.alerts, 0)
           }  
 
 
@@ -412,5 +473,11 @@ function getOmDataPoints(key, categoryData, setting, more){
 function getConfigurationData(categoryData, setting, more){  
   var data_list;
   data_list = getConfigurationDetails(categoryData, setting, more);  
+  return [data_list[0], data_list[1], data_list[2]];
+}
+
+function getComponentData(categoryData, setting, more){  
+  var data_list;
+  data_list = getComponentDetails(categoryData, setting, more);  
   return [data_list[0], data_list[1], data_list[2]];
 }

@@ -104,6 +104,15 @@
 	      		</div>
 	      		<div id="divConf" style="display:none;"></div>	      		
 	      	</div>
+          <div class="col-md-12">
+            <div class='portlet box blue portlet_radius'>
+              <div class="portlet-title portlet_radius">
+                <div class="caption">Alerts</div>
+                <i onclick="toggleAlerts();" class='fa fa-chevron-circle-down portlet_icon'></i>
+              </div>
+            </div>
+            <div id="divAlerts" style="display:none;"></div>            
+          </div>          
 	      </div>
       </div>  
   </div>
@@ -131,14 +140,29 @@
       if($("#divWidgets").css("display") === "block"){
         $("#divWidgets").slideToggle('slow');
       }
+      if($("#divAlerts").css("display") === "block"){
+        $("#divAlerts").slideToggle('slow');
+      }            
       $("#divConf").slideToggle('slow');      
     }
     function toggleWidgets(){    	
       if($("#divConf").css("display") === "block"){
         $("#divConf").slideToggle('slow');
       }
+      if($("#divAlerts").css("display") === "block"){
+        $("#divAlerts").slideToggle('slow');
+      }      
       $("#divWidgets").slideToggle('slow');
     }
+    function toggleAlerts(){     
+      if($("#divConf").css("display") === "block"){
+        $("#divConf").slideToggle('slow');
+      }
+      if($("#divWidgets").css("display") === "block"){
+        $("#divWidgets").slideToggle('slow');
+      }      
+      $("#divAlerts").slideToggle('slow');
+    }    
   </script>
   <!-- END JAVASCRIPTS -->
 </body>
