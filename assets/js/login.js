@@ -30,9 +30,9 @@ $("#btnLogin").click(function () {
         console.log("Got reponse from server for widget list....");
         localStorage.setItem("cachedWidgetList", JSON.stringify(data));
         $('body').css('display', 'none');
-
         $('body').fadeOut(1000);
-
+        
+        $(".loading").hide();
         window.location.href = "home.html";
       },
       error: function (responseData, textStatus, errorThrown) {

@@ -90,7 +90,7 @@
 	      		<div class='portlet box blue portlet_radius'>
 	      			<div class="portlet-title portlet_radius">
 	      				<div class="caption" >Dashboard</div>
-	      				 <i onclick="toggleWidgets();" class='fa fa-chevron-circle-down portlet_icon'></i>
+	      				 <i id="iconWidget" onclick="toggleWidgets();" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
 	      		<div id="divWidgets" style="display:none;"></div>	
@@ -99,7 +99,7 @@
 	      		<div class='portlet box blue portlet_radius'>
 	      			<div class="portlet-title portlet_radius">
 	      				<div class="caption">Configurations</div>
-	      				<i onclick="toggleConfiguration();" class='fa fa-chevron-circle-down portlet_icon'></i>
+	      				<i id="iconConf" onclick="toggleConfiguration();" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
 	      		<div id="divConf" style="display:none;"></div>	      		
@@ -108,7 +108,7 @@
             <div class='portlet box blue portlet_radius'>
               <div class="portlet-title portlet_radius">
                 <div class="caption">Alerts</div>
-                <i onclick="toggleAlerts();" class='fa fa-chevron-circle-down portlet_icon'></i>
+                <i id="iconComp" onclick="toggleAlerts();" class='fa fa-chevron-circle-down portlet_icon'></i>
               </div>
             </div>
             <div id="divAlerts" style="display:none;"></div>            
@@ -129,12 +129,11 @@
   <script src="assets/js/login.js" type="text/javascript"></script>
   <script>
     $(document).ready(function(){
+      $(".loading").show();
       $('body').css('display', 'none');
-      $('body').fadeIn(1000);      
-      getWidgetList();      
-      $("#selectCategoryList").change(function(){
-        window.location.href = this.value;
-      });      
+      $('body').fadeIn(1000);
+      getWidgetList();
+      $(".loading").hide();         
     });
     function toggleConfiguration(){
       if($("#divWidgets").css("display") === "block"){
@@ -143,6 +142,7 @@
       if($("#divAlerts").css("display") === "block"){
         $("#divAlerts").slideToggle('slow');
       }            
+      $("#iconConf").
       $("#divConf").slideToggle('slow');      
     }
     function toggleWidgets(){    	
@@ -162,7 +162,7 @@
         $("#divWidgets").slideToggle('slow');
       }      
       $("#divAlerts").slideToggle('slow');
-    }    
+    }
   </script>
   <!-- END JAVASCRIPTS -->
 </body>
