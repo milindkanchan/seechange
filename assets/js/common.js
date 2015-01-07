@@ -190,7 +190,12 @@ function setWidgetList(responseData){
     if (child !== null){ 
       $.each(child, function(index, category){
         //listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
-        homeList += "<p onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        console.log(category.exception);
+        if (category.exception === true){
+          homeList += "<p style='border:2px solid rgba(255, 0, 0, 0.98);' onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;color:rgba(255, 0, 0, 0.98);'></i></p>"          
+        }else{          
+          homeList += "<p onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"          
+        }   
       })
       //localStorage.setItem("cacheSelectWidget", listItems);
       if (window.location.href.indexOf("home.html") > 0){
@@ -334,6 +339,7 @@ function showWidgetSetting(widgetId, widgetType){
           if (category.id == widgetId){
             cnt = tmp_cnt;
           }
+          console.log(category)
           if(widgetType === "widget"){
             omData = getOmDataPoints(index, category.data, category.setting, 1)
           }else if(widgetType === "conf"){

@@ -71,9 +71,7 @@
       <!-- BEGIN USER LOGIN DROPDOWN -->
       <ul class="nav navbar-nav pull-right users ">
         <li class="hor-menu dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-          <i onclick='logout();' class="fa fa-power-off"></i>
-        </a>
+          <i onclick='logout();' class="fa fa-power-off portlet_icon_off"></i>
       </li>
       </ul>
       <!-- END USER LOGIN DROPDOWN -->
@@ -87,28 +85,28 @@
       <div class="page-content">
 	      <div class="row">
 	      	<div class="col-md-12">
-	      		<div class='portlet box blue portlet_radius'>
+	      		<div onclick="toggleWidgets();" class='portlet box blue portlet_radius'>
 	      			<div class="portlet-title portlet_radius">
 	      				<div class="caption" >Dashboard</div>
-	      				 <i id="iconWidget" onclick="toggleWidgets();" class='fa fa-chevron-circle-down portlet_icon'></i>
+	      				 <i id="iconWidget" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
 	      		<div id="divWidgets" style="display:none;"></div>	
 	      	</div>
 	      	<div class="col-md-12">
-	      		<div class='portlet box blue portlet_radius'>
+	      		<div onclick="toggleConfiguration();" class='portlet box blue portlet_radius'>
 	      			<div class="portlet-title portlet_radius">
 	      				<div class="caption">Configurations</div>
-	      				<i id="iconConf" onclick="toggleConfiguration();" class='fa fa-chevron-circle-down portlet_icon'></i>
+	      				<i id="iconConf" class='fa fa-chevron-circle-down portlet_icon'></i>
 	      			</div>
 	      		</div>
 	      		<div id="divConf" style="display:none;"></div>	      		
 	      	</div>
           <div class="col-md-12">
-            <div class='portlet box blue portlet_radius'>
+            <div onclick="toggleAlerts();" class='portlet box blue portlet_radius'>
               <div class="portlet-title portlet_radius">
                 <div class="caption">Alerts</div>
-                <i id="iconComp" onclick="toggleAlerts();" class='fa fa-chevron-circle-down portlet_icon'></i>
+                <i id="iconComp" class='fa fa-chevron-circle-down portlet_icon'></i>
               </div>
             </div>
             <div id="divAlerts" style="display:none;"></div>            
@@ -142,7 +140,7 @@
       if($("#divAlerts").css("display") === "block"){
         $("#divAlerts").slideToggle('slow');
       }
-      $("#divConf").slideToggle('slow');      
+      $("#divConf").slideToggle('slow');
     }
     function toggleWidgets(){    	
       if($("#divConf").css("display") === "block"){

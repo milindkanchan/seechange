@@ -90,7 +90,8 @@
 }
 
 .header .hor-menu.role {
-	margin-left:-10px;
+	margin-left: 20px;
+	margin-top: 10px;
 }
 
 .header .hor-menu ul.platform li.active > a:hover {
@@ -240,6 +241,14 @@ div.footer a {color:#999;
 
 .portlet_icon {
 	float: right;
-	font-size: 22px;
+	font-size: 30px;
 	margin-top: 4px;
+	color: white;
+}
+
+.portlet_icon_off{
+	float: right;
+	font-size: 30px;
+	margin-top: 15px;
+	color: white;	
 }

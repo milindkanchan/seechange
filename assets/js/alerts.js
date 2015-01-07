@@ -16,12 +16,12 @@ function getComponentDetails(data, alerts, more){
 		if(sName.length>0){
 			$.each(sName, function(idx, cat){
 				data_listing +=	"<div>";
-				data_listing +=		"<h6 style='color:rgba(255, 0, 0, 0.98);'>High Alerts on server: " + cat.serverName + " </h6>";
+				data_listing +=		"<h6 style='color:rgba(255, 0, 0, 0.98);'>High Alerts on server: " + cat.serverName + " ( Location: " + cat.location_name + " ) </h6>";
 
 				if(cat.alerts.length > 0){		
 					data_listing += 	"<ul>";
 					$.each(cat.alerts, function(idx, cat){					
-						data_listing +=	  "<li>" + cat.name + " ( " +  cat.location + ", " + cat.created_at + " ) </li>";
+						data_listing +=	  "<li>" + cat.name + " ( " + cat.created_at + " ) </li>";
 					});
 					data_listing += 	"</ul>";				
 				}else{
