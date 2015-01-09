@@ -10,6 +10,7 @@ $("#btnLogin").click(function () {
   }
   var uri =  proto + ip + ":" + port  + "/mmc";
   //var uri =  proto + ip + ":" + port;
+  console.log(uri);
   if ($.parseJSON(localStorage.baseUrl) !== uri){
     localStorage.clear();
   }

@@ -66,6 +66,9 @@ function widgetAssets(data, setting, more){
 	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error === null){
 		var thresh = setting.productization_latency;
+		if(typeof(thresh) == "undefined"){
+			thresh = 0;
+		}
 		var title = data.currentNoOfTitles;
 		$.each(title, function(idx, cat){
 			if(idx !== "error"){
@@ -119,8 +122,7 @@ function widgetAssets(data, setting, more){
 		data_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.noOfFailedIngests.ingest + " " + data.noOfFailedIngests.unit +"</div>";
 		data_listing +=      "</div>";
 
-
-		if(thresh > data.pendingProductizationItemCount){		
+		if((thresh > data.pendingProductizationItemCount) || (thresh == 0 && data.pendingProductizationItemCount == 0)){		
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}else{
@@ -174,7 +176,7 @@ function widgetBGW(data, setting, more){
 	    	res_icoms = rep_icoms > 0 ? (rep_icoms / (rep_icoms + unrep_icoms)) * 100 : 0;
 	    }
 
-		if(setting.tvod_record_count_threshold < data.unreportedBillingRecords){
+		if((parseInt(setting.tvod_record_count_threshold) < data.unreportedBillingRecords) || (parseInt(setting.tvod_record_count_threshold) == 0 && data.unreportedBillingRecords == 0) ){
 		widgetStatus = false;	
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}else{
@@ -184,7 +186,7 @@ function widgetBGW(data, setting, more){
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.unreportedBillingRecords + "</div>";
 		data_listing += "</div>";
 
-		if(setting.posting_success_rate_threshold > data.reportedBillingIcomsRecords){
+		if((parseInt(setting.posting_success_rate_threshold) > data.reportedBillingIcomsRecords) || (parseInt(setting.posting_success_rate_threshold) == 0 && data.reportedBillingIcomsRecords == 0)){
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}else{
@@ -197,7 +199,7 @@ function widgetBGW(data, setting, more){
 		var calcET = (data.elapsedTimeFromLastSuccessfulIngest == "-1") ? 0 : data.elapsedTimeFromLastSuccessfulIngest
 		var cal_elap = data.elapsedTimeFromLastSuccessfulIngest.split(":");
 		var cal_elap_time = (cal_elap[0] + cal_elap[1])/60;
-		if(setting.vod_usage_ingest_threshold < cal_elap_time){
+		if((parseInt(setting.vod_usage_ingest_threshold) < cal_elap_time) || (parseInt(setting.vod_usage_ingest_threshold) == 0 && cal_elap_time == 0)){
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}else{
@@ -328,7 +330,7 @@ function widgetPGW(data, setting, more){
 				transaction_success_rate = 100;
 			}
 		}
-		if(setting.transaction_success_rate_threshold > transaction_success_rate){
+		if((parseInt(setting.transaction_success_rate_threshold) > transaction_success_rate) || (parseInt(setting.transaction_success_rate_threshold) == 0 && transaction_success_rate == 0)){
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}else{
@@ -342,7 +344,7 @@ function widgetPGW(data, setting, more){
 		var cal_elap = data.elapsedTimeFromLastTransaction.split(":");
 		var cTime = (cal_elap[0] + cal_elap[1])/60;
 
-		if(setting.last_transaction_threshold < cTime){
+		if((parseInt(setting.last_transaction_threshold) < cTime) || (parseInt(setting.last_transaction_threshold) == 0  && cTime == 0)){
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}else{
@@ -398,8 +400,7 @@ function widgetPublisher(data, setting, more){
 		data_listing +=     "<div style='width:45%;float:right;padding:2.5%;text-align:right;'>" + data.totalRequestRate + " request/sec </div>";
 		data_listing += "</div>";
 
-
-		if(setting.publisher_latency > data.averageRequestDuration){
+		if( (parseInt(setting.publisher_latency) > data.averageRequestDuration) ||  (parseInt(setting.publisher_latency) == 0 && data.averageRequestDuration == 0) ){
 		widgetStatus = false;
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}else{
@@ -542,7 +543,6 @@ function widgetStreams(data, setting, more){
 }
 
 function widgetSystems(data, setting, more){
-
 	var data_listing = '';
 	var val_listing = '';
 	var more_listing = '';
@@ -558,7 +558,7 @@ function widgetSystems(data, setting, more){
 			}
 			val_listing += "<p>" + cat + " " + idx + "</p>";
 		});
-		if(setting.server_threshold_down < Vdown){
+		if(parseInt(setting.server_threshold_down) < Vdown){
 		widgetStatus = false;	
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";		
 		}else{
@@ -576,7 +576,7 @@ function widgetSystems(data, setting, more){
 			}
 			val_listing += "<p>" + cat + " " + idx + "</p>";
 		});
-		if(setting.service_threshold_down < Sdown){	
+		if(parseInt(setting.service_threshold_down) < Sdown){	
 		widgetStatus = false;	
 		data_listing += "<div style='width:100%;background:#FAC6C8;border:#ED1C24 solid 1px;float:left; margin:0 .25% 5px 0; padding:1%'>";		
 		}else{
