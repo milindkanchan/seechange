@@ -243,7 +243,8 @@
         $(".loading").show();
         var widgetId = getUrlParams();
         var widgetType = getExtraUrlParams();
-        showWidgetSetting(widgetId, widgetType);        
+        var click_cnt = getCntExtraUrlParams();
+        showWidgetSetting(widgetId, widgetType, click_cnt);
         /*try{       
           document.addEventListener("deviceready", onDeviceReady, false);
           function onDeviceReady() {

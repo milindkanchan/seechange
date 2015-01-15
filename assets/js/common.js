@@ -18,6 +18,16 @@ function getExtraUrlParams(){
     } 
 }
 
+function getCntExtraUrlParams(){
+    var results = new RegExp('[\&]cnt=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    } 
+}
+
 function trimDocumentname(docName)
 {
   //alert(docName);
@@ -187,15 +197,18 @@ function setWidgetList(responseData){
     var child = responseData;
     var listItems = "";
     var homeList = "";
+    var itm_cnt = 1;
     if (child !== null){ 
       $.each(child, function(index, category){
+
         //listItems   +=  "<option value='show.html?id=" + category.id + "'>" + category.title + "</option>";
         
         if (category.exception === true && category.widget_error === false){
-          homeList += "<p style='border:2px solid rgba(255, 0, 0, 0.98);' onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;color:rgba(255, 0, 0, 0.98);'></i></p>"          
+          homeList += "<p style='border:2px solid rgba(255, 0, 0, 0.98);' onclick=redirectToShow('" + category.id + "','widget','" + itm_cnt + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;color:rgba(255, 0, 0, 0.98);'></i></p>"          
         }else{          
-          homeList += "<p onclick=redirectToShow('" + category.id + "','widget');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"          
+          homeList += "<p onclick=redirectToShow('" + category.id + "','widget,'" + itm_cnt + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"          
         }   
+        itm_cnt += 1;
       })
       //localStorage.setItem("cacheSelectWidget", listItems);
       if (window.location.href.indexOf("home.html") > 0){
@@ -212,9 +225,11 @@ function setConfigurationList(responseData){
   if (responseData !== null){
     var child = responseData;
     var homeList = "";
+    var itm_cnt = 1;
     if (child !== null){ 
       $.each(child, function(index, category){
-        homeList += "<p onclick=redirectToShow('" + category.id + "','conf');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        homeList += "<p onclick=redirectToShow('" + category.id + "','conf','" + itm_cnt + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        itm_cnt += 1;
       })
       if (window.location.href.indexOf("home.html") > 0){
        $("#divConf").html(homeList); 
@@ -229,9 +244,11 @@ function setComponentList(responseData){
   if (responseData !== null){
     var child = responseData;
     var homeList = "";
+    var itm_cnt = 1;
     if (child !== null){ 
       $.each(child, function(index, category){
-        homeList += "<p onclick=redirectToShow('" + category.id + "','comp');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        homeList += "<p onclick=redirectToShow('" + category.id + "','comp','" + itm_cnt + "');>" + category.title +  "<i class='fa fa-chevron-right' style='padding-right:10px;float:right;'></i></p>"
+        itm_cnt += 1;
       })
       if (window.location.href.indexOf("home.html") > 0){
        $("#divAlerts").html(homeList); 
@@ -242,8 +259,8 @@ function setComponentList(responseData){
   }
 }
 
-function redirectToShow(cat_id, cat_type){
-  window.location.href = "show.html?id=" + cat_id + "&type=" + cat_type;
+function redirectToShow(cat_id, cat_type, click_cnt){
+  window.location.href = "show.html?id=" + cat_id + "&type=" + cat_type + "&cnt=" + click_cnt;
 }
 
 function isOdd(num) { return num % 2;}
@@ -313,7 +330,7 @@ function showWidget(widgetId){
   window.location.href = "show.html?id=" + widgetId;
 }
 
-function showWidgetSetting(widgetId, widgetType){
+function showWidgetSetting(widgetId, widgetType, click_cnt){
   var data = '';
   if(widgetType === "widget"){
     data =  $.parseJSON(localStorage.getItem("cachedWidgetList"));
@@ -375,7 +392,8 @@ function showWidgetSetting(widgetId, widgetType){
     $('.image_slider').slickGoTo(cnt);*/
     $("#bb-bookblock").html(pdf_listing)
     //$("#navbb-block").html(nav_listing);
-    Page.init();    
+    Page.init();
+    $("#bb-bookblock").bookblock('jump', parseInt(click_cnt));
   }
 }
 
