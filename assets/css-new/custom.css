@@ -261,3 +261,31 @@ div.footer a {color:#999;
 	text-align: center;
 	position: absolute;
 }
+
+.l_arrow_wrap, .r_arrow_wrap{
+	position: absolute;
+	height: 100%;
+	width:4rem;
+	z-index: 1;
+	left:0;
+}
+.r_arrow_wrap{
+	right:0;
+	left:auto;
+}
+.l_arrow, .r_arrow{
+	position: absolute;
+	top: 47%;
+	background: rgba(63, 54, 54, 0.19);
+	height: 4rem;
+	width: 3rem;
+	left: 0;
+	font-size: 16px!important;
+	line-height: 4rem!important;
+	text-align: center;
+	z-index: 11;
+}
+.r_arrow{
+	right:0;
+	left: auto;
+}

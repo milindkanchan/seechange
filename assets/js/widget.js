@@ -14,22 +14,22 @@ function widgetAlert(data, setting, more){
 	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error === ""){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>High severity</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>High severity</h6></div>";
 		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.highSeverity + "</div>";
 		data_listing += "</div>";
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Medium severity</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Medium severity</h6></div>";
 		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.mediumSeverity + "</div>";
 		data_listing += "</div>";
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Low severity</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Low severity</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.lowSeverity + "</div>";
 		data_listing += "</div>";
 
 
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing +=		"<h6>Recent alerts</h6>";
 		if(data.recentAlerts.length > 0){
 		data_listing += 	"<ul>";
@@ -79,7 +79,7 @@ function widgetAssets(data, setting, more){
 		});
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Current No Of Titles</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Current No Of Titles</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing += "</div>";
 
@@ -94,7 +94,7 @@ function widgetAssets(data, setting, more){
 		});
 
 		data_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=        "<div style='width:75%;float:left;'><h6>Current No Of Products</h6></div>";
+		data_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Current No Of Products</h6></div>";
 		data_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing +=      "</div>";
 
@@ -108,17 +108,17 @@ function widgetAssets(data, setting, more){
 			}
 		});
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Current No. Of Deliverables</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Current No. Of Deliverables</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing += "</div>";
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>No. Of Successful Ingests</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>No. Of Successful Ingests</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.noOfSuccessfulIngests.ingest + " " + data.noOfSuccessfulIngests.unit + "</div>";
 		data_listing += "</div>";
 
 		data_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing +=        "<div style='width:75%;float:left;'><h6>No. Of failed Ingests</h6></div>";
+		data_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>No. Of failed Ingests</h6></div>";
 		data_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.noOfFailedIngests.ingest + " " + data.noOfFailedIngests.unit +"</div>";
 		data_listing +=      "</div>";
 
@@ -128,7 +128,7 @@ function widgetAssets(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}	
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Current number of pending productization items</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Current number of pending productization items</h6></div>";
 		data_listing += 	"<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.pendingProductizationItemCount + "</div>";
 		data_listing += "</div>";
 
@@ -136,24 +136,24 @@ function widgetAssets(data, setting, more){
 		  	more_listing +=	"<div>";
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Pending productization items greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Pending productization items greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + thresh + "</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align:left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";
 			
 		}
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
@@ -182,7 +182,7 @@ function widgetBGW(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Unreported TVOD Records</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Unreported TVOD Records</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.unreportedBillingRecords + "</div>";
 		data_listing += "</div>";
 
@@ -192,7 +192,7 @@ function widgetBGW(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Posting Success Rate</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Posting Success Rate</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + rep_icoms + "</div>";
 		data_listing += "</div>";
 
@@ -205,11 +205,11 @@ function widgetBGW(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Elapsed Time From Last Successful Ingest</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Elapsed Time From Last Successful Ingest</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + calcET  + "</div>";
 		data_listing += "</div>";
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 
@@ -217,21 +217,21 @@ function widgetBGW(data, setting, more){
 		  	more_listing +=	"<div>";
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Unreported TVOD record count is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Unreported TVOD record count is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.tvod_record_count_threshold + " records</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Posting success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Posting success rate is less than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.posting_success_rate_threshold + " %</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Duration from last VOD usage Ingest is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Duration from last VOD usage Ingest is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.vod_usage_ingest_threshold + " %</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align:left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";			
 		}
@@ -240,7 +240,7 @@ function widgetBGW(data, setting, more){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";		
 	}	
@@ -264,7 +264,7 @@ function widgetCD(data, setting, more){
 			}
 		});
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Current No Of Deliverables</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Current No Of Deliverables</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing += "</div>";
 
@@ -277,7 +277,7 @@ function widgetCD(data, setting, more){
 		});	
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:65%;float:left;'><h6>Failed Service Requests</h6></div>";
+		data_listing += 	"<div style='width:65%;float:left;text-align:left;'><h6>Failed Service Requests</h6></div>";
 		data_listing +=     "<div style='width:35%;float:right;padding:2.5%;text-align:left;'>" + val_listing + "</div>";
 		data_listing += "</div>";
 
@@ -290,18 +290,18 @@ function widgetCD(data, setting, more){
 		});	
 
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:65%;float:left;'><h6>Average Service Request Duration</h6></div>";
+		data_listing += 	"<div style='width:65%;float:left;text-align:left;'><h6>Average Service Request Duration</h6></div>";
 		data_listing +=     "<div style='width:35%;float:right;padding:2.5%;text-align:left;'>" + val_listing + "</div>";
 		data_listing += "</div>";
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
@@ -317,7 +317,7 @@ function widgetPGW(data, setting, more){
 	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error === null){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Transaction Count</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Transaction Count</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + data.transactionSuccessCount + "</div>";
 		data_listing += "</div>";
 
@@ -336,7 +336,7 @@ function widgetPGW(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Transaction success rate</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Transaction success rate</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + transaction_success_rate + "</div>";
 		data_listing += "</div>";
 
@@ -350,11 +350,11 @@ function widgetPGW(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:75%;float:left;'><h6>Elapsed Time from last transaction</h6></div>";
+		data_listing += 	"<div style='width:75%;float:left;text-align:left;'><h6>Elapsed Time from last transaction</h6></div>";
 		data_listing +=     "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + elap_time + "</div>";
 		data_listing += "</div>";		
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 
@@ -362,16 +362,16 @@ function widgetPGW(data, setting, more){
 		  	more_listing +=	"<div>";
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Transaction success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Transaction success rate is less than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.transaction_success_rate_threshold + " %</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Duration from last transaction is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Duration from last transaction is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.last_transaction_threshold + " hours</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align:left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";
 
@@ -381,7 +381,7 @@ function widgetPGW(data, setting, more){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
@@ -396,7 +396,7 @@ function widgetPublisher(data, setting, more){
 	var updatedDate = formatUpdatedDate(data.lastModified)
 	if(data.error === null){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:55%;float:left;'><h6>Average rate of client requests (5F) </h6></div>";
+		data_listing += 	"<div style='width:55%;float:left;text-align:left;'><h6>Average rate of client requests (5F) </h6></div>";
 		data_listing +=     "<div style='width:45%;float:right;padding:2.5%;text-align:right;'>" + data.totalRequestRate + " request/sec </div>";
 		data_listing += "</div>";
 
@@ -406,11 +406,11 @@ function widgetPublisher(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}
-		data_listing += 	"<div style='width:60%;float:left;'><h6>Average duration of client requests (5F) </h6></div>";
+		data_listing += 	"<div style='width:60%;float:left;text-align:left;'><h6>Average duration of client requests (5F) </h6></div>";
 		data_listing +=     "<div style='width:40%;float:right;padding:2.5%;text-align:right;'>" + data.averageRequestDuration + " seconds</div>";
 		data_listing += "</div>";	
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 
@@ -418,11 +418,11 @@ function widgetPublisher(data, setting, more){
 		  	more_listing +=	"<div>";
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Average request duration is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Average request duration is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.publisher_latency + " msec</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align:left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";			
 		}
@@ -452,13 +452,13 @@ function widgetStreams(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}	
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Total Streams</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Total Streams</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + activeSess + "</div>";
 		data_listing += "</div>";
 
 		var succrate = ((data.averageSessionSetupRate < 0) ? 0 : data.averageSessionSetupRate) + " setups / sec";
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Average session setup rate</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Average session setup rate</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + succrate + "</div>";
 		data_listing += "</div>";
 
@@ -469,7 +469,7 @@ function widgetStreams(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";		
 		}
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Average session latency</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Average session latency</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + sessLat + "</div>";
 		data_listing += "</div>";
 
@@ -480,7 +480,7 @@ function widgetStreams(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		}
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Short-term success rate</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Short-term success rate</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + succRate + "</div>";
 		data_listing += "</div>";
 
@@ -492,17 +492,17 @@ function widgetStreams(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}	
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Medium-term success rate</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Medium-term success rate</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + medRate + "</div>";
 		data_listing += "</div>";
 
 		var maxPermin = ((data.maximumNoOfSessionsPerMinute < 0 ) ? 0 : data.maximumNoOfSessionsPerMinute) + ' sessions / min';
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-		data_listing += 	"<div style='width:50%;float:left;'><h6>Maximum number of sessions</h6></div>";
+		data_listing += 	"<div style='width:50%;float:left;text-align:left;'><h6>Maximum number of sessions</h6></div>";
 		data_listing +=     "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + maxPermin + "</div>";
 		data_listing += "</div>";				
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 
@@ -511,22 +511,22 @@ function widgetStreams(data, setting, more){
 		  	more_listing +=	"<div>";
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Setup latency is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Setup latency is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.avg_latency_threshold + " msec</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Short term success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Short term success rate is less than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.short_term_success_rate_threshold + " %</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Medium term success rate is less than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Medium term success rate is less than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.medium_term_success_rate_threshold + " %</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";
 
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align:left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";			
 		}
@@ -535,7 +535,7 @@ function widgetStreams(data, setting, more){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align:left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	
@@ -564,7 +564,7 @@ function widgetSystems(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}	
-		data_listing +=        "<div style='width:50%;float:left;'><h6>Virtual Machine (VM) nodes</h6></div>";
+		data_listing +=        "<div style='width:50%;float:left;text-align:left;'><h6>Virtual Machine (VM) nodes</h6></div>";
 		data_listing +=        "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing +=      "</div>";
 
@@ -582,11 +582,11 @@ function widgetSystems(data, setting, more){
 		}else{
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";	
 		}	
-		data_listing +=        "<div style='width:50%;float:left;'><h6>Services</h6></div>";
+		data_listing +=        "<div style='width:50%;float:left;text-align:left;'><h6>Services</h6></div>";
 		data_listing +=        "<div style='width:50%;float:right;padding:2.5%;text-align:right;'>" + val_listing + "</div>";
 		data_listing +=      "</div>";	
 
-		data_listing += "<div>";
+		data_listing += "<div style='text-align-left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 
@@ -595,17 +595,17 @@ function widgetSystems(data, setting, more){
 			more_listing +=		"<h6><b>Threshold Setting</b></h6>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Number of VMs down is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Number of VMs down is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.server_threshold_down + "</div>";
 			more_listing +=      "</div>";
 
 			more_listing +=      "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-			more_listing +=        "<div style='width:75%;float:left;'><h6>Number of services down is greater than</h6></div>";
+			more_listing +=        "<div style='width:75%;float:left;text-align:left;'><h6>Number of services down is greater than</h6></div>";
 			more_listing +=        "<div style='width:25%;float:right;padding:2.5%;text-align:right;'>" + setting.service_threshold_down + "</div>";
 			more_listing +=      "</div>";
 			more_listing += "</div>";			
 
-	  		more_listing +=	"<div>";
+	  		more_listing +=	"<div style='text-align-left;'>";
 			more_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 			more_listing += "</div>";
 		}
@@ -614,7 +614,7 @@ function widgetSystems(data, setting, more){
 		data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
 		data_listing +=     "<div style='width:100%;float:right;padding:2.5%;text-align:left;'>" + data.error + "</div>";
 		data_listing += "</div>";
-	  	data_listing +=	"<div>";
+	  	data_listing +=	"<div style='text-align-left;'>";
 		data_listing += 	"<small> Last updated : " + updatedDate[0] + ", " + updatedDate[1] + "</small>";
 		data_listing += "</div>";
 	}	

@@ -18,13 +18,13 @@ function getConfigurationDetails(data, setting, more){
 	var updatedDate = data.lastModified;
 	var	val_listing = '';	
 	data_listing += "<div style='width:100%; background:rgba(0,0,0,.1); float:left; margin:0 .25% 5px 0; padding:1%'>";
-	data_listing += 	"<div style='width:25%;float:left;'><h6>Component</h6></div>";
+	data_listing += 	"<div style='width:25%;float:left;text-align:left;'><h6>Component</h6></div>";
 	data_listing += 	"<div style='width:75%;float:right;padding:2.5%;text-align:right;'>" + data.component_name + "</div>";
 	data_listing += "</div>";
 
 	var sName = setting.serverName;
 	var sIP = setting.serverIP;	
-	data_listing +=	"<div>";
+	data_listing +=	"<div style='text-align:left;'>";
 	data_listing +=		"<h6>Assigned Server(s)</h6>";
 	if(sName.length > 0){		
 		data_listing += 	"<ul>";

@@ -348,10 +348,10 @@ function showWidgetSetting(widgetId, widgetType){
           }  
 
 
-          pdf_listing +=  "<div>";
+          pdf_listing +=  "<div class='bb-item'>";
 
           if(omData[2] == ''){
-            pdf_listing +=  "<div class='row'>";
+            pdf_listing +=  "<div>";
               pdf_listing +=  widgetWithOutThreshold(category, omData);
             pdf_listing +=  "</div>";
           }else{
@@ -362,7 +362,7 @@ function showWidgetSetting(widgetId, widgetType){
           tmp_cnt += 1;
       })
     }
-    $(".image_slider").html(pdf_listing);
+    /*$(".image_slider").html(pdf_listing);
     $('.image_slider').slick({
       dots: true,
       arrows: false,
@@ -372,9 +372,11 @@ function showWidgetSetting(widgetId, widgetType){
       autoplaySpeed: 20000000,
       swipe: true
     });
-    $('.image_slider').slickGoTo(cnt);
+    $('.image_slider').slickGoTo(cnt);*/
+    $("#bb-bookblock").html(pdf_listing)
+    //$("#navbb-block").html(nav_listing);
+    Page.init();    
   }
-  $(".loading").hide();  
 }
 
 function widgetWithOutThreshold(category, omData){
@@ -406,7 +408,7 @@ function widgetWithOutThreshold(category, omData){
 function widgetWithThreshold(category, omData){
 
   var pdf_listing = '';
-  pdf_listing +=  "<div class='row'>";
+  pdf_listing +=  "<div>";
   pdf_listing +=    "<div class='col-md-6'>";
   if(omData[1] === true){
   pdf_listing +=      "<div class='portlet box grey' >";
