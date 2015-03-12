@@ -49,7 +49,7 @@ function displayError(msg, type){
     message = "<div style='font-weight: normal;text-align:center;'>" + msg + "</div>"
   }
   
-  jAlert(message, "BPM Project");
+  jAlert(message, "SeaChange");
 }
 
 /* ------ Category List realted functions -------- */

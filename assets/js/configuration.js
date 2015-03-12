@@ -8,7 +8,12 @@ function formatUpdatedDate(upDate){
 }
 
 function formatServerIP(sip){
-  return sip.replace(/\, 127.0.0.1/g, '');  
+  return sip[0].replace(/\, 127.0.0.1/g, '');  
+}
+
+function replaceLocalToConfigUrl(curl){
+  var ip = localStorage.getItem("baseIP");	
+  return curl.replace(/SERVER_IP/g, ip);
 }
 
 function getConfigurationDetails(data, setting, more){
@@ -21,8 +26,8 @@ function getConfigurationDetails(data, setting, more){
 	data_listing += 	"<div style='width:25%;float:left;text-align:left;'><h6>Component</h6></div>";
 	data_listing += 	"<div style='width:75%;float:right;padding:2.5%;text-align:right;'>" + data.component_name + "</div>";
 	data_listing += "</div>";
-
 	var sName = setting.serverName;
+	var configUrls = setting.configUrl;
 	var sIP = setting.serverIP;	
 	data_listing +=	"<div style='text-align:left;'>";
 	data_listing +=		"<h6>Assigned Server(s)</h6>";
@@ -32,13 +37,30 @@ function getConfigurationDetails(data, setting, more){
 			data_listing +=	  "<li>" + formatServerIP(sIP[i]) + " (" + sName[i] + ") </li>";
 		}
 		data_listing += 	"</ul>";
-		data_listing += 	"<small> Last updated : " + updatedDate + "</small>";		
 	}else{
 		data_listing += 	"<ul>";
 		data_listing +=			"<li>No server(s) assigned</li>";		
+		data_listing += 	"</ul>";					
+	}
+	data_listing += "</div>";
+
+	data_listing +=	"<div style='text-align:left;'>";
+	data_listing +=		"<h6>Service Installed (click on service to view cofiguration)</h6>";
+	if(configUrls.length > 0){		
+		data_listing += 	"<ul>";
+		for(i = 0; i < configUrls.length; i++){
+			data_listing +=	  "<li><a href='" + replaceLocalToConfigUrl(configUrls[i][1]) + "'>" + configUrls[i][0] + "</a></li>";
+		}
+		data_listing += 	"</ul>";		
+		data_listing += 	"<small> Last updated : " + updatedDate + "</small>";		
+	}else{
+		data_listing += 	"<ul>";
+		data_listing +=			"<li>No service(s) installed</li>";		
 		data_listing += 	"</ul>";			
 		data_listing += 	"<small> Last updated : " + updatedDate + "</small>";
 	}
 	data_listing += "</div>";
+
+
 	return [data_listing, widgetStatus, '']
 }
