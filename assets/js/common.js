@@ -18,6 +18,16 @@ function getExtraUrlParams(){
     } 
 }
 
+function getUrlHrefParams(){
+    var results = new RegExp('[\?]link=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    } 
+}
+
 function getCntExtraUrlParams(){
     var results = new RegExp('[\&]cnt=([^&#]*)').exec(window.location.href);
     if (results==null){
@@ -505,4 +515,40 @@ function getComponentData(categoryData, setting, more){
   var data_list;
   data_list = getComponentDetails(categoryData, setting, more);  
   return [data_list[0], data_list[1], data_list[2]];
+}
+
+function getConfigurationXML(hrefLink){
+  //if (networkStatus() === 1){    
+    $(".loading").show();
+    console.log("Server call to get configuration xml....");
+    var baseUrl = $.parseJSON(localStorage.getItem("baseUrl"));
+    jQuery.support.cors = true;
+      $(function (){
+        $.ajax({
+          url: hrefLink, //baseUrl + "/healthcheck/get_configuration_xml_response",
+          dataType: "xml",
+          //data: {link: hrefLink},
+          xhrFields: {
+            'withCredentials': true
+          },
+          crossDomain: true,
+          cache: true,
+          success: function(data, textStatus) {
+            console.log("Got reponse from server for configuration xml....");
+            $(".loading").hide();
+            console.log($(data).responseText);
+            $(data).each(function(){
+              console.log($(this));
+              $("#row").append($(this));
+            })            
+            $("#row").html(data);
+          },
+          error: function (responseData, textStatus, errorThrown) {
+            console.log('Ajax Request failed. ' + errorThrown);   
+            $(".loading").hide();          
+          }
+        });
+
+      })
+  //}    
 }
