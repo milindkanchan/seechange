@@ -52,7 +52,8 @@ function getConfigurationDetails(data, setting, more){
 	if(configUrls.length > 0){		
 		data_listing += 	"<ul>";
 		for(i = 0; i < configUrls.length; i++){
-			data_listing +=	  "<li><a href='config_xml.html?link=" + replaceLocalToConfigUrl(configUrls[i][1]) + "&id=" + wId + "&type=" + wType + "&cnt=" + wCnt + "'>" + configUrls[i][0] + "</a></li>";
+			//data_listing +=	  "<li><a href='" + replaceLocalToConfigUrl(configUrls[i][1]) + "&id=" + wId + "&type=" + wType + "&cnt=" + wCnt + "'>" + configUrls[i][0] + "</a></li>";
+			data_listing +=	  "<li><a href='" + replaceLocalToConfigUrl(configUrls[i][1]) + "'>" + configUrls[i][0] + "</a></li>";
 		}
 		data_listing += 	"</ul>";		
 		data_listing += 	"<small> Last updated : " + updatedDate + "</small>";		
